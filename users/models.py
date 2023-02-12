@@ -12,7 +12,7 @@ class School(models.Model):
 class User(AbstractUser):
     full_name = models.CharField('ФИ', max_length=255, null=True)
     school = models.ForeignKey(School, on_delete=models.CASCADE, null=True)
-    prof = models.CharField('Должность', max_length=255)
+    prof = models.CharField('Должность', max_length=255, null=True)
 
     def __str__(self):
         return f"id:{self.id}, full_name:{self.full_name}, school:{self.school}, prof:{self.prof}"
@@ -21,6 +21,7 @@ class User(AbstractUser):
 class Director(models.Model):
     full_name = models.CharField('ФИ', max_length=255)
     prof = models.CharField('Должность', max_length=255)
+    school = models.ForeignKey(School, on_delete=models.CASCADE, null=True)
 
 
 class EduLevel(models.Model):
